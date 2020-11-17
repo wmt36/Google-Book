@@ -7,17 +7,15 @@ import Saved from '../src/pages/Saved'
 function App() {
   return (
     <Router>
-    <div>
-      <Switch>
-        <Route exact path={["/", "/home"]}>
-          <Home></Home>
-        </Route>
-        <Route exact path="/submit">
-          <Saved />
-        </Route>
-      </Switch>
-    </div>
-  </Router>
+      <div>
+      
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/saved" component={Saved} />
+          </Switch>
+      
+      </div>
+    </Router>
   );
 }
 

@@ -6,9 +6,9 @@ import Bookcard from '../components /Bookcards'
 const Home = () => {
   return (
       <div>
-     <Jumbotron></Jumbotron>
-  <Input></Input>
-  <Bookcard />
+     <Jumbotron />
+      <Input></Input>
+      <Bookcard />
    
       </div>
   

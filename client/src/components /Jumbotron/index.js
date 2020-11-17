@@ -4,10 +4,13 @@ import './style.css'
 
 function Jumbotron() {
   return (
-    <div className="jumbotron jumbotron-fluid">
-    <div className="container">
-      <h1 className="display-4">Google Book search</h1>
-    </div>
+    <div className="jumbotron">
+    <h1 className="display-4">Google Book Search!</h1>
+    <p className="lead">Search for popular books with the help of the Google book databse!</p>
+    <hr></hr>
+    <a className="btn btn-primary btn-lg" href="/" role="button">Search</a>
+    %10
+    <a className="btn btn-primary btn-lg" href="/saved" role="button">Saved Books</a>
   </div>
   
   );

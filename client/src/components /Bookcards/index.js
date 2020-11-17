@@ -3,7 +3,7 @@ import API from '../../utils/API'
 
 
 
-function Bookcard() {
+function Bookcard({save, view }) {
 
 
   return (
@@ -13,8 +13,12 @@ function Bookcard() {
   <h3>{}</h3>
   <h3>{}</h3>
   <p>{}</p>
-    <a href="#" className="btn btn-primary">Save Book!</a>
-    <a href="#" className="btn btn-success">View Book!</a>
+  <button onClick={() => save("save")} className="btn btn-primary mx-4">
+        Save Book!
+      </button>
+      <button onClick={() => view("view")} className="btn btn-success mx-4">
+        View Book!
+      </button>
   </div>
 </div>
   );
