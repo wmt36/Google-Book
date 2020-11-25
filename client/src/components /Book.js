@@ -8,9 +8,6 @@ function BookInfo() {
   return (
     <ul class="list-group list-group-flush">
     <li class="list-group-item">{title, authors, description, image, link}</li>
-    <li class="list-group-item"><Bookcards /></li>
-    <li class="list-group-item"><Bookcards /></li>
-    <li class="list-group-item"><Bookcards /></li>  
   </ul>
 
   );
