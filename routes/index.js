@@ -1,9 +1,18 @@
-const path = require('path')
-const router = require('express').Router()
+const router = require('express').Router();
 
-const apiRoutes = require('./api')
 
-router.use(function(req, res) {
-    res.sendFile(path.join(__dirname, "../client/build/index.html"));
-  });
-router.use('/api', apiRoutes)
+router.get('/api/books', ({body}, res) => {
+    res.json(body)
+    console.log(body)
+})
+
+router.post('/api/books', ({body}, res) => {
+    res.json(body)
+})
+
+router.delete('/api/books/:id', ({body}, res) => {
+    console.log('data deleted')
+    res.json(body)
+})
+
+module.exports = router 
