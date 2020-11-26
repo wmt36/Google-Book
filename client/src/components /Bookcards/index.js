@@ -4,23 +4,18 @@ import API from "../../utils/API";
 import SaveBtn from '../SaveBtn'
 
 function Bookcard({ view }) {
-  const [book, setBook] = useState({
-    title: "",
-    authors: "",
-    description: "",
-    image: "",
-    link: "",
-  });
+  const [book, setBook] = useState([]);
 
   useEffect(() => {
     API.getBooks()
-      .then((res) => setBook(res.data.items))
-      .catch((err) => console.log(err));
-  }, []);
+    .then((res) => {
+      console.log("response from db: ", res.data.items);
+      setBook(res.data.items)});
+    }, []);
   
   function saveBook(save) {
     if(save === 'save'){
-   console.log(`${book.timessaved++}`)
+   console.log('saved')
   }
 }
 
@@ -29,13 +24,12 @@ function Bookcard({ view }) {
     <div>
       { book.length ? (<div>
         {book.map((books) => (
-        <div className="card" key={books.id}>
-          {/* <img src="">{books.volumeInfo.imageLinks.thumbnail}</img> */}
-          <div className="card-body">
+        <div className="card-body" key={books.id}>    
+          <img src={books.volumeInfo.imageLinks}></img>
             <h3>{books.volumeInfo.title}</h3>
-            <h3>{books.volumeInfo.authors[0]}</h3>
-            <p>{books.volumeInfo.searchInfo}</p>
-            <a>{books.accessInfo.webReaderLink}</a>
+            <h3>{books.volumeInfo.authors}</h3>
+            <a>{books.searchInfo.textSnippet}</a>
+            <a>{books.accessInfo.country}</a>
             <SaveBtn saveBook={saveBook} />
             <button
               onClick={() => view("view")}
@@ -43,7 +37,7 @@ function Bookcard({ view }) {
             >
               View Book!
             </button>
-          </div>
+
         </div>
       ))}
       </div>) : (<div></div>) }

@@ -4,7 +4,7 @@ const api_url = 'https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:
 module.exports = {
    findAll: function(req, res) {
        db.Book('Book')
-       .find({})
+       .find(req.param)
        .then(books => res.json(books))
        .catch(err => res.status(422).json(err))
    }, 
