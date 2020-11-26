@@ -19,16 +19,39 @@ function Bookcard({ view }) {
   }
 }
 
+
+function textSnippet(books){
+  if(books.searchInfo){
+  return books.searchInfo.textSnippet
+  } else {
+    return 'No description for this book in this API'
+  }
+}
+
+
+function imageLinks(books){
+  
+if(books.volumeInfo.imageLinks){
+  return books.volumeInfo.imageLinks.thumbnail
+} else if (books.volumeInfo.imageLinks) {
+  return books.volumeInfo.imageLinks.smallThumbnail
+} else{
+  return 'No Image'
+}
+
+}
+//books.volumeInfo.imageLinks
   return (
 
     <div>
       { book.length ? (<div>
         {book.map((books) => (
-        <div className="card-body" key={books.id}>    
-          <img src={books.volumeInfo.imageLinks}></img>
+          
+        <div className="card-body" key={books.id}> 
+          <img src={imageLinks(books) }></img>
             <h3>{books.volumeInfo.title}</h3>
             <h3>{books.volumeInfo.authors}</h3>
-            <a>{books.searchInfo.textSnippet}</a>
+            <h6>{textSnippet(books)}</h6>
             <a>{books.accessInfo.country}</a>
             <SaveBtn saveBook={saveBook} />
             <button
