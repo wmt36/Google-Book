@@ -11,7 +11,8 @@ router.get('/api/books', async ({body}, res) => {
 })
 
 router.post('/api/books', ({body}, res) => {
-    res.json(body)
+    console.log(body)
+    res.json('yessi')
 })
 
 // router.delete('/api/books/:id', ({body}, res) => {

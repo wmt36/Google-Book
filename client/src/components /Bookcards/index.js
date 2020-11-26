@@ -6,6 +6,8 @@ import SaveBtn from '../SaveBtn'
 function Bookcard({ view }) {
   const [book, setBook] = useState([]);
 
+
+  //used to set the data from my axios call to my setBook state so i have access to it
   useEffect(() => {
     API.getBooks()
     .then((res) => {
@@ -13,13 +15,25 @@ function Bookcard({ view }) {
       setBook(res.data.items)});
     }, []);
   
-  function saveBook(save) {
-    if(save === 'save'){
-   console.log('saved')
+    //allowing you tosave the book to the database
+  function saveBook(e) {
+    e.preventDefault();
+    // API.saveBook()
+    console.log('book coming soon')
+}
+
+function viewBook( books) {
+  
+  if(books.volumeInfo){
+    return books.volumeInfo.previewLink
+  }else{
+    return 'No link for book!'
   }
+
 }
 
 
+//adding a dicription of the book if there is one to add
 function textSnippet(books){
   if(books.searchInfo){
   return books.searchInfo.textSnippet
@@ -28,7 +42,7 @@ function textSnippet(books){
   }
 }
 
-
+//adding images if it is there is an image to add from the api
 function imageLinks(books){
   
 if(books.volumeInfo.imageLinks){
@@ -40,7 +54,7 @@ if(books.volumeInfo.imageLinks){
 }
 
 }
-//books.volumeInfo.imageLinks
+
   return (
 
     <div>
@@ -48,14 +62,14 @@ if(books.volumeInfo.imageLinks){
         {book.map((books) => (
           
         <div className="card-body" key={books.id}> 
-          <img src={imageLinks(books) }></img>
-            <h3>{books.volumeInfo.title}</h3>
-            <h3>{books.volumeInfo.authors}</h3>
+          <img src={imageLinks(books) } alt={'Thumbnail of Book Cover'}></img>
+            <h2>{books.volumeInfo.title}</h2>
+            <h4>{books.volumeInfo.authors}</h4>
             <h6>{textSnippet(books)}</h6>
-            <a>{books.accessInfo.country}</a>
-            <SaveBtn saveBook={saveBook} />
+            <h6>{books.accessInfo.country}</h6>
+            <SaveBtn onClick={saveBook} />
             <button
-              onClick={() => view("view")}
+              onClick={viewBook}
               className="btn btn-success mx-4"
             >
               View Book!
