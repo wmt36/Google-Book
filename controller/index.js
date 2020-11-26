@@ -1,5 +1,5 @@
 const db = require = require('../models')
-const api_url = 'https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes/'
+const api_url = 'https://www.googleapis.com/books/v1/volumes?q=search+terms'
 
 module.exports = {
    findAll: function(req, res) {

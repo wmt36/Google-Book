@@ -4,7 +4,7 @@ const fetch = require('node-fetch')
 
 
 router.get('/api/books', async ({body}, res) => {
-    const api_url = 'https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes/'
+    const api_url = 'https://www.googleapis.com/books/v1/volumes?q=search+terms'
     const response = await fetch(api_url)
     const data = await response.json()
     res.json(data)
