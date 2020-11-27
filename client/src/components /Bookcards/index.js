@@ -74,7 +74,7 @@ if(books.volumeInfo.imageLinks){
             <h6>{books.accessInfo.country}</h6>
             <SaveBtn onClick={saveBook} />
             <button
-              onClick={() => viewBook}
+              onClick={() => viewBook(books)}
               className="btn btn-success mx-4"
             >
               View Book!
