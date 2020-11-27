@@ -15,9 +15,3 @@ export default function index(props) {
   );
 }
 
-// <button
-// onClick={() => save("save")}
-// className="btn btn-primary mx-4"
-// >
-// Save Book!
-// </button>

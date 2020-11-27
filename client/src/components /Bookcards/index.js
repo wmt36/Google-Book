@@ -3,7 +3,10 @@ import React, { useState, useEffect } from "react";
 import API from "../../utils/API";
 import SaveBtn from '../SaveBtn'
 
+
 function Bookcard({ view }) {
+
+  //setting out components state
   const [book, setBook] = useState([]);
 
 
@@ -22,6 +25,8 @@ function Bookcard({ view }) {
     console.log('book coming soon')
 }
 
+
+//using this function to put in place to view the link to the book if it exsist
 function viewBook( books) {
   
   if(books.volumeInfo){
@@ -69,7 +74,7 @@ if(books.volumeInfo.imageLinks){
             <h6>{books.accessInfo.country}</h6>
             <SaveBtn onClick={saveBook} />
             <button
-              onClick={viewBook}
+              onClick={() => viewBook}
               className="btn btn-success mx-4"
             >
               View Book!

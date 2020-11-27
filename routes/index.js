@@ -4,6 +4,7 @@ const fetch = require('node-fetch')
 const db = require('../models');
 const { insert } = require('../controller');
 const { Book } = require('../models');
+const { mongo } = require('mongoose');
 
 
 //API call from google to get access all 900+ books from them 
@@ -40,5 +41,19 @@ router.get('/api/books/saved', ({body}, res) => {
     })
     
 })
+
+// router.delete('/api/books/:id', ({body}, res) => {
+//     Book.remove({ 
+//         _id: mongojs.ObjectID(body.params.id)
+//     }, (err, data )=> {
+//         if(err) {
+//             res.send(err)
+//         } else {
+//             res.send(data)
+//             console.log(`You deleted ${data}`)
+//         }
+//     })
+    
+// })
 
 module.exports = router 
