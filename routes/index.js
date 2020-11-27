@@ -1,5 +1,5 @@
 const router = require('express').Router();
-
+const mongojs = require('mongojs')
 const fetch = require('node-fetch')
 const db = require('../models');
 const { insert } = require('../controller');
@@ -28,9 +28,17 @@ Book.insertMany(body)
 console.log(Book)
 }) 
 
-// router.delete('/api/books/:id', ({body}, res) => {
-//     console.log('data deleted')
-//     res.json(body)
-// })
+
+//allow you to find the exact books saved to the database
+router.get('/api/books/saved', ({body}, res) => {
+    Book.find({}, (err, data) => {
+        if(err){
+            res.send(err)
+        } else{
+            res.json(data)
+        }
+    })
+    
+})
 
 module.exports = router 
