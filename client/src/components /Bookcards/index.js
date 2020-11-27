@@ -27,15 +27,7 @@ function Bookcard({ view }) {
 
 
 //using this function to put in place to view the link to the book if it exsist
-function viewBook( books) {
-  
-  if(books.volumeInfo){
-    return books.volumeInfo.previewLink
-  }else{
-    return 'No link for book!'
-  }
 
-}
 
 
 //adding a dicription of the book if there is one to add
@@ -57,6 +49,15 @@ if(books.volumeInfo.imageLinks){
 } else{
   return 'No Image'
 }
+}
+
+function viewBook( books) {
+  
+  if(books.volumeInfo){
+    return window.location.assign(books.volumeInfo.previewLink)
+  }else{
+    return 'No link for book!'
+  }
 
 }
 
@@ -67,7 +68,7 @@ if(books.volumeInfo.imageLinks){
         {book.map((books) => (
           
         <div className="card-body" key={books.id}> 
-          <img src={imageLinks(books) } alt={'Thumbnail of Book Cover'}></img>
+          <img src={imageLinks(books)} alt={'Thumbnail of Book Cover'}></img>
             <h2>{books.volumeInfo.title}</h2>
             <h4>{books.volumeInfo.authors}</h4>
             <h6>{textSnippet(books)}</h6>
