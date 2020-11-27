@@ -9,7 +9,7 @@ const Home = () => {
       <div>
      <Jumbotron />
       <Input></Input>
-      <Bookcard />
+      <Bookcard/>
    
       </div>
   
