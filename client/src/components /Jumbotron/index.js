@@ -5,8 +5,8 @@ import './style.css'
 function Jumbotron() {
   return (
     <div className="jumbotron">
-    <h1 className="display-4">Google Book Search!</h1>
-    <p className="lead">Search for popular books with the help of the Google book databse!</p>
+    <h1 className="display-4">Google Book Display!</h1>
+    <p className="lead">Scroll and search for popular books with the help of the Google book databse!</p>
     <hr></hr>
     <a className="btn btn-primary btn-lg" href="/" role="button">Search</a>
     %10

@@ -1,18 +1,18 @@
-
+import React, { useState, useEffect } from 'react'
+import {Link, useParams } from 'react-router-dom'
 import Jumbotron from '../components /Jumbotron'
-import Results from '../components /Results'
-import BookContext from '../utils/BookContext'
-import Book from '../components /Book'
+import SavedCards from '../components /SavedCards'
+import API from '../utils/API'
 
 
 const Saved = () => {
+
   return (
       <div>
-        <BookContext.Provider>
+      
         <Jumbotron />
-          {/* <Results /> */}
-       </BookContext.Provider>
- 
+        <SavedCards />
+        
    
       </div>
   

@@ -26,7 +26,7 @@ router.post('/api/books', ({body}, res) => {
 Book.insertMany(body)
 .then(books => {res.json(books)})
 .catch(err => {res.status(400).json(err)});
-console.log(Book)
+
 }) 
 
 
