@@ -23,8 +23,8 @@ const SavedCards = () => {
    loadBooks()
   }, [])
 
-  function deleteBook(_id) {
-      API.deleteBook(_id)
+  function deleteBook(books) {
+      API.deleteBook(books)
       .then(res => loadBooks()) 
       .catch(err => console.log(err))
   }
@@ -49,7 +49,7 @@ const SavedCards = () => {
               Search for more books!
              </button>            
              </Link>
-             <DeleteBtn onClick={() => deleteBook(books._id)}/>    
+             <DeleteBtn onClick={() => deleteBook(books)}/>    
          </div>
           ))}
         </div>) : ( <div> <h1>No Books Saved!</h1>

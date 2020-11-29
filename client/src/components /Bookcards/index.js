@@ -23,17 +23,14 @@ function Bookcard({ view }) {
 
 
     //allowing you tosave the book to the database
-  function saveBook() {
-    if(saved.title && saved.authors && saved.description) {
-    API.saveBook({ 
-      title: saved.title,
-      author: saved.authors,
-      description: saved.description,
-    })
-    .then(res => setSaved())
+  function saveBook(books) {
+    
+    API.saveBook({ books })
+    .then((res) => {
+      console.log("saved book to data base ", res.data);
+      setSaved(res.data)})
     .catch(err => console.log(err)
     )}console.log()
-}
 
 
 
