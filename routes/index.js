@@ -42,18 +42,18 @@ router.get('/api/books/saved', ({body}, res) => {
     
 })
 
-// router.delete('/api/books/:id', ({body}, res) => {
-//     Book.remove({ 
-//         _id: mongojs.ObjectID(body.params.id)
-//     }, (err, data )=> {
-//         if(err) {
-//             res.send(err)
-//         } else {
-//             res.send(data)
-//             console.log(`You deleted ${data}`)
-//         }
-//     })
+router.delete('/api/books/saved/:_id', (req, res) => {
+    Book.remove({ 
+        _id: mongojs.ObjectID(req.params.id)
+    }, (err, data )=> {
+        if(err) {
+            res.send(err)
+        } else {
+            res.send(data)
+            console.log(`You deleted ${data}`)
+        }
+    })
     
-// })
+})
 
 module.exports = router 

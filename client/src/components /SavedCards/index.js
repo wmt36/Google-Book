@@ -1,27 +1,42 @@
 import React, { useState, useEffect } from 'react'
-import {Link, useParams } from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import API from '../../utils/API'
+import DeleteBtn from '../DeleteBtn'
 
 
 const SavedCards = () => {
 
   const [book, setBook] = useState([])
 
- //used to get the books that we saved to the databse from saveBook function
-  useEffect((e) => {
+
+ function loadBooks(){
     API.getBook()
     .then((res) => {
       console.log("response from db: ", res.data);
       setBook(res.data)})
     .catch(err => console.log(err));
+    
+ }
+
+ //used to get the books that we saved to the databse from saveBook function
+  useEffect(() => {
+   loadBooks()
   }, [])
+
+  function deleteBook(_id) {
+      API.deleteBook(_id)
+      .then(res => loadBooks()) 
+      .catch(err => console.log(err))
+  }
 
 
   return (
       <div>
+          
         { book.length ? (<div>
-          {book.map((books) => {
-           <div className="card-body" key={books.id}> 
+          {book.map((books) => (
+           
+           <div className="card-body" key={books._id}> 
            {/* <img src={} alt={'Thumbnail of Book Cover'}></img> */}
              <h2>{books.title}</h2>
              <h4>{books.authors}</h4>
@@ -34,8 +49,9 @@ const SavedCards = () => {
               Search for more books!
              </button>            
              </Link>
+             <DeleteBtn onClick={() => deleteBook(books._id)}/>    
          </div>
-        })}
+          ))}
         </div>) : ( <div> <h1>No Books Saved!</h1>
           <Link to={'/'}>
              <button
@@ -43,7 +59,9 @@ const SavedCards = () => {
              >
               Search for more books!
              </button>            
-             </Link>        
+             </Link>    
+
+            
         </div>
          )}
    

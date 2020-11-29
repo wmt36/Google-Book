@@ -6,7 +6,7 @@ function Jumbotron() {
   return (
     <div className="jumbotron">
     <h1 className="display-4">Google Book Display!</h1>
-    <p className="lead">Scroll and search for popular books with the help of the Google book databse!</p>
+    <h2 className="lead">Scroll and search for popular books with the help of the Google book databse!</h2>
     <hr></hr>
     <a className="btn btn-primary btn-lg" href="/" role="button">Search</a>
     %10
