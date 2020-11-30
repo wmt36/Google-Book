@@ -25,8 +25,8 @@ const SavedCards = () => {
 
 
   //deleting book from the database 
-  function deleteBook(books) {
-      API.deleteBook(books)
+  function deleteBook(id) {
+      API.deleteBook(id)
       .then(res => loadBooks()) 
       .catch(err => console.log(err))
   }
