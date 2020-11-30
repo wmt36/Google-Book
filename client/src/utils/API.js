@@ -13,8 +13,8 @@ saveBook: function(books) {
 getBook: function(id) {
   return axios.get('/api/books/saved/')
 },//delete book from database
-deleteBook: function (id) {
-  return axios.delete('/api/books/saved/' + id)
+deleteBook: function () {
+  return axios.delete('/api/books/saved/:id/')
 }
 
 

@@ -23,10 +23,23 @@ const SavedCards = () => {
    loadBooks()
   }, [])
 
+
+  //deleting book from the database 
   function deleteBook(books) {
       API.deleteBook(books)
       .then(res => loadBooks()) 
       .catch(err => console.log(err))
+  }
+
+  //link to viewbook from saved page
+  function viewBook( books) {
+  
+    if(books.volumeInfo){
+      return window.location.assign(books.volumeInfo.previewLink)
+    }else{
+      return 'No link for book!'
+    }
+  
   }
 
 
@@ -42,14 +55,13 @@ const SavedCards = () => {
              <h4>{books.authors}</h4>
              <h6>{books.description}</h6>
              <h6>{}</h6>
-             <Link to={'/'}>
              <button
-               className="btn btn-danger mx-4"
-             >
-              Search for more books!
-             </button>            
-             </Link>
-             <DeleteBtn onClick={() => deleteBook(books)}/>    
+              onClick={() => viewBook(books)}
+              className="btn btn-success mx-4"
+            >
+              View Book!
+            </button>
+             <DeleteBtn onClick={() => deleteBook(books._id)}/>    
          </div>
           ))}
         </div>) : ( <div> <h1>No Books Saved!</h1>

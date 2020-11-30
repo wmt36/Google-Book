@@ -22,12 +22,22 @@ router.get('/api/books', async ({body}, res) => {
 
 
 // allow you to add a book from the API call to the database
-router.post('/api/books', ({body}, res) => {
-Book.insertMany(body)
-.then(books => {res.json(books)})
-.catch(err => {res.status(400).json(err)});
-
-}) 
+router.post('/api/books', ({ body }, res) => {
+    let data = {
+      title: body.books.volumeInfo.title,
+      authors: body.books.volumeInfo.authors.join(','),
+      description: body.books.volumeInfo.description,
+      link: body.books.volumeInfo.previewLink
+    };
+    Book.insertMany(data)
+      .then((books) => {
+        res.json(books);
+      })
+      .catch((err) => {
+        res.status(400).json(err);
+        console.log(err);
+      });
+  });
 
 
 //allow you to find the exact books saved to the database
@@ -42,18 +52,13 @@ router.get('/api/books/saved', ({body}, res) => {
     
 })
 
-router.delete('/api/books/saved/:_id', (req, res) => {
-    Book.remove({ 
-        _id: mongojs.ObjectID(req.params.id)
-    }, (err, data )=> {
-        if(err) {
-            res.send(err)
-        } else {
-            res.send(data)
-            console.log(`You deleted ${data}`)
-        }
-    })
-    
+router.delete('/api/books/saved/:id', (req, res) => {
+    Book
+    .findById({ id: req.params.id })
+    .then(books => books.remove())
+    .then(books => res.json(books))
+    .catch(err => res.status(400).json(err))
+    console.log(`You deleted ${req.params}`)
 })
 
 module.exports = router 
