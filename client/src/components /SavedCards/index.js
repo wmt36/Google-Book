@@ -38,9 +38,14 @@ const SavedCards = () => {
       return window.location.assign(books.volumeInfo.previewLink)
     }else{
       return 'No link for book!'
-    }
-  
+    }  
   }
+
+
+  //adding a dynamic search function
+//   const handleInputChange = event => {
+//       setBook(event.target.value);
+//   }
 
 
   return (

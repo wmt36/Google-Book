@@ -9,7 +9,7 @@ const { mongo } = require('mongoose');
 
 //API call from google to get access all 900+ books from them 
 router.get('/api/books', async ({body}, res) => {
-    const api_url = 'https://www.googleapis.com/books/v1/volumes?q=search+terms'
+    const api_url = 'https://www.googleapis.com/books/v1/volumes?q=search+terms&maxResults=40'
     const response = await fetch(api_url)
     const data = await response.json()
     res.json(data)
