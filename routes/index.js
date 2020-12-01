@@ -52,11 +52,11 @@ router.get('/api/books/saved', ({body}, res) => {
     
 })
 
-router.delete('/api/books/saved', (req, res) => {
+router.delete('/api/books/saved/:id', (req, res) => {
     Book
-    .findById({ id: req.params.id })
-    .then(books => books.deleteOne())
-    .then(books => res.json(books))
+    .findById({ _id: req.params.id })
+    .then(books => books.remove({}))
+    .then(books => res.send(books))
     .catch(err => res.status(400).json(err))
     console.log(`You deleted ${req.params}`)
 })
