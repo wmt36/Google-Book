@@ -9,14 +9,10 @@ const { mongo } = require('mongoose');
 
 //API call from google to get access all 900+ books from them 
 router.get('/api/books', async ({body}, res) => {
-    const api_url = 'https://www.googleapis.com/books/v1/volumes?q=search+terms&maxResults=40'
+    const api_url = 'https://www.googleapis.com/books/v1/volumes?q=search+terms&maxResults=15&orderBy=newest'
     const response = await fetch(api_url)
     const data = await response.json()
-    res.json(data)
-
-    // Book.find({})
-    // .then(books => res.json(books))
-    // .catch(err => res.status(422).json(err))
+    res.json(data) 
 
 })
 
@@ -24,6 +20,7 @@ router.get('/api/books', async ({body}, res) => {
 // allow you to add a book from the API call to the database
 router.post('/api/books', ({ body }, res) => {
     let data = {
+      image: body.books.volumeInfo.imageLinks.thumbnail,
       title: body.books.volumeInfo.title,
       authors: body.books.volumeInfo.authors.join(','),
       description: body.books.volumeInfo.description,

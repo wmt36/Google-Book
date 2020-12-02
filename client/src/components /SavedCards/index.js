@@ -4,6 +4,7 @@ import API from '../../utils/API'
 import DeleteBtn from '../DeleteBtn'
 
 
+
 const SavedCards = () => {
 
   const [book, setBook] = useState([])
@@ -34,28 +35,24 @@ const SavedCards = () => {
   //link to viewbook from saved page
   function viewBook( books) {
   
-    if(books.volumeInfo){
-      return window.location.assign(books.volumeInfo.previewLink)
+    if(books){
+      return window.location.assign(books.link)
     }else{
       return 'No link for book!'
     }  
   }
 
 
-  //adding a dynamic search function
-//   const handleInputChange = event => {
-//       setBook(event.target.value);
-//   }
+  
 
 
   return (
-      <div>
-          
+      <div> 
         { book.length ? (<div>
           {book.map((books) => (
            
            <div className="card-body" key={books._id}> 
-           {/* <img src={} alt={'Thumbnail of Book Cover'}></img> */}
+           <img src={books.image} alt={'Thumbnail of Book Cover'}></img>
              <h2>{books.title}</h2>
              <h4>{books.authors}</h4>
              <h6>{books.description}</h6>

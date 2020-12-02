@@ -3,12 +3,14 @@ import React, { useState, useEffect } from "react";
 import API from "../../utils/API";
 import SaveBtn from '../SaveBtn'
 import { Link } from "react-router-dom";
+import Input from '../Input'
 
 
 function Bookcard({ view }) {
 
   //setting out components state
   const [book, setBook] = useState([]);
+  const [search, setSearch] = useState('')
   const [saved, setSaved] = useState({})
 
 
@@ -24,7 +26,7 @@ function Bookcard({ view }) {
 
     //allowing you tosave the book to the database
   function saveBook(books) {
-    
+  
     API.saveBook({ books })
     .then((res) => {
       console.log("saved book to data base ", res.data);
@@ -64,12 +66,20 @@ function viewBook( books) {
   }else{
     return 'No link for book!'
   }
-
 }
+
+//function to dynamically search for google books
+// const handleInputChange = event => {
+//   API.get
+//   setSearch(event.target.value)
+//   console.log(event.target.value)
+// }
 
   return (
 
     <div>
+      <Input />
+      {/* <Input handleInputChange={handleInputChange}/> */}
       { book.length ? (<div>
         {book.map((books) => (
           
