@@ -5,6 +5,7 @@ const db = require('../models');
 const { insert } = require('../controller');
 const { Book } = require('../models');
 const { mongo } = require('mongoose');
+const path = require('path')
 
 
 //API call from google to get access all 900+ books from them 
@@ -57,5 +58,11 @@ router.delete('/api/books/saved/:id', (req, res) => {
     .catch(err => res.status(400).json(err))
     console.log(`You deleted ${req.params}`)
 })
+
+
+router.use(function(req, res) {
+    res.sendFile(path.join(__dirname, "../client/build/index.html"));
+  });
+  
 
 module.exports = router 
